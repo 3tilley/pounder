@@ -31,11 +31,11 @@ async fn main() {
             match key {
                 Some(key) if letter_struct.keycode == key  => {
                     draw_text("nice", screen_width() / 2.0, screen_height() / 2.0, 60.0, DARKGRAY);
-                    game_state.letter_queue.pop();
+                    game_state.update(true);
                 }
                 Some(key) => {
                     draw_text("nope", screen_width() / 2.0, screen_height() / 2.0, 60.0, DARKGRAY);
-                    game_state.letter_queue.pop();
+                    game_state.update(false);
                 }
                 None => ()
             }

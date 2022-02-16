@@ -109,6 +109,15 @@ impl GameState {
         self.letter_queue.len() == 0
     }
 
+    pub fn update(&mut self, pass: bool) {
+        let letter = self.letter_queue.pop().unwrap();
+        if pass {
+            self.correct.push((letter, chrono::Duration::zero()));
+        } else {
+            self.failed.push((letter, chrono::Duration::zero()));
+        }
+    }
+
     pub fn new<T: Generator>(generator: &mut T) -> GameState {
         let mut game_state = GameState{ letter_queue: vec![], correct: vec![], failed: vec![] };
         game_state.generate_new_letters(5, generator);
